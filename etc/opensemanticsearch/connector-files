@@ -41,3 +41,24 @@ config['mappings'] = { "/": "file:///" }
 # this option wont change the uri (which is the base of this option and can be mapped and stripped above),
 # it will only change/strip/shorten the path facet in the interactive navigation of the user interface
 #config['facet_path_strip_prefix'] = [ "file:///home/", "file://" ]
+
+
+#
+# WARC archives: index revisit records
+#
+
+# Index not only WARC response records but also WARC revisit records
+# with WARC-Profile identical-payload-digest and WARC-Refers-To header,
+# taking their content from the final referenced response record
+# (even if the referenced record is stored after the revisit record
+# or the reference is a chain of multiple revisit records).
+#
+# Each revisit record is indexed with its own URL, WARC-Record-ID and WARC-Date,
+# the id of the response record its content was taken from is stored
+# in the field warc_source_record_id_s.
+#
+# Revisit records with duplicate WARC-Record-ID, missing reference target
+# or circular references will be skipped and reported to stderr,
+# while all other records will still be imported.
+
+#config['warc_revisit'] = True
